@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:todoapp/model.dart';
 
-class databaseHelper {
+class DatabaseHelper {
   static Database? _database;
 
   Future<Database?> get database async {
@@ -37,9 +37,9 @@ class databaseHelper {
 
   Future<List<TodoModel>> getDataList() async {
     await database;
-    final List<Map<String, Object?>> QueryResult =
+    final List<Map<String, Object?>> queryResult =
         await _database!.rawQuery('SELECT * FROM mytodo');
-    return QueryResult.map((e) => TodoModel.fromMap(e)).toList();
+    return queryResult.map((e) => TodoModel.fromMap(e)).toList();
   }
 
   Future<int> delete(int id) async {
